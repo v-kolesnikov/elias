@@ -1,0 +1,8 @@
+development: &base
+  database_url: 'postgres://localhost/elias_development'
+  session_secret: 'c58c488ff0a59669cc181eb7258c22ec'
+test:
+  <<: *base
+  database_url: 'postgres://localhost/elias_test'
+production:
+  <<: *base
