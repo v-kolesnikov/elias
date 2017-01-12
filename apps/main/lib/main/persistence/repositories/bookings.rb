@@ -4,7 +4,7 @@ module Main
   module Persistence
     module Repositories
       class Bookings < Elias::Repository[:bookings]
-        relations :bookings
+        relations :bookings, :tickets
 
         def listing
           bookings.as Main::Entities::Booking

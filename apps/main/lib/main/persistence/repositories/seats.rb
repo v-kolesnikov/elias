@@ -4,7 +4,7 @@ module Main
   module Persistence
     module Repositories
       class Seats < Elias::Repository[:seats]
-        relations :seats
+        relations :seats, :aircrafts
 
         def listing
           seats.as Main::Entities::Seat
