@@ -13,8 +13,8 @@ gem "shotgun", ">= 0.9.2"
 
 # Database persistence
 gem "pg"
-gem "rom-repository"
-gem "rom-sql"
+gem "rom-repository", "1.0.0.beta1"
+gem "rom-sql", "~> 1.0.0.beta2"
 
 # Application dependencies
 gem "dry-matcher"
