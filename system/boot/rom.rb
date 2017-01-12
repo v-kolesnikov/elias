@@ -13,6 +13,8 @@ Elias::Container.namespace "persistence" do |persistence|
         extensions: [:error_sql]
       )
 
+      rom_config.gateways[:default].use_logger persistence["logger"]
+
       persistence.register("config", rom_config)
     end
 
