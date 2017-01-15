@@ -1,0 +1,18 @@
+language: ruby
+
+cache: bundler
+
+rvm:
+  - 2.4.0
+
+addons:
+  postgresql: "9.6"
+
+services:
+  - postgresql
+
+before_script:
+  - pwd
+
+script:
+  - bundle exec rubocop

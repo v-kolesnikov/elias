@@ -10,6 +10,7 @@ AllCops:
   Exclude:
     - "tmp/**/*"
     - "log/**/*"
+    - "vendor/**/*"
 
 Style/Documentation:
   Enabled: false
