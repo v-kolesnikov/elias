@@ -1,9 +1,6 @@
 language: ruby
 
-cache: bundler
-
-rvm:
-  - 2.4.0
+dist: trusty
 
 addons:
   postgresql: "9.6"
@@ -11,8 +8,13 @@ addons:
 services:
   - postgresql
 
+cache: bundler
+
+rvm:
+  - 2.4.0
+
 before_script:
-  - pwd
+  - psql -c 'create database elias_test;' -U postgres
 
 script:
   - bundle exec rubocop
