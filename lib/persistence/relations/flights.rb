@@ -19,8 +19,8 @@ module Persistence
 
         attribute :status, Types::Strict::String
 
-        attribute :actual_departure, Types::Strict::Time
-        attribute :actual_arrival,   Types::Strict::Time
+        attribute :actual_departure, Types::Strict::Time.optional
+        attribute :actual_arrival,   Types::Strict::Time.optional
 
         primary_key :flight_id
 

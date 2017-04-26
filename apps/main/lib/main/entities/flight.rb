@@ -11,8 +11,8 @@ module Main
       attribute :arrival_airport, Types::Strict::String
       attribute :aircraft_code, Types::Strict::String
       attribute :status, Types::Strict::String
-      attribute :actual_departure, Types::Strict::Time
-      attribute :actual_arrival, Types::Strict::Time
+      attribute :actual_departure, Types::Strict::Time.optional
+      attribute :actual_arrival, Types::Strict::Time.optional
     end
   end
 end
