@@ -9,11 +9,13 @@ module Main
     configure do |config|
       config.root = Pathname(__FILE__).join("../..").realpath.dirname.freeze
 
+      config.logger = Elias::Container[:logger]
+
       config.default_namespace = "main"
 
-      config.auto_register = %w(
+      config.auto_register = %w[
         lib/main
-      )
+      ]
     end
 
     load_paths! "lib", "system"

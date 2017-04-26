@@ -3,8 +3,8 @@ source "https://rubygems.org"
 gem "rake"
 
 # Web framework
-gem "dry-web", ">= 0.5.0"
-gem "dry-web-roda", ">= 0.5.0"
+gem "dry-web", ">= 0.6.0"
+gem "dry-web-roda", ">= 0.6.0"
 gem "puma"
 gem "rack_csrf"
 
@@ -13,8 +13,8 @@ gem "shotgun", ">= 0.9.2"
 
 # Database persistence
 gem "pg"
-gem "rom-repository", "1.0.0.beta1"
-gem "rom-sql", "~> 1.0.0.beta2"
+gem "rom-repository"
+gem "rom-sql"
 
 # Application dependencies
 gem "dry-matcher"
@@ -23,11 +23,11 @@ gem "dry-struct"
 gem "dry-transaction"
 gem "dry-types"
 gem "dry-validation"
-gem "dry-view"
+gem "dry-view", ">= 0.2.2"
 gem "slim"
 
 group :development, :test do
-  gem "pry-byebug"
+  gem "pry-byebug", platform: :mri
   gem "rubocop"
 end
 
