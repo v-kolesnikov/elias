@@ -13,10 +13,6 @@ module Persistence
           has_many :seats, foreign_key: :aircraft_code
         end
       end
-
-      def by_code(code)
-        where(aircraft_code: code)
-      end
     end
   end
 end

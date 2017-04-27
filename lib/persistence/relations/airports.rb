@@ -18,18 +18,6 @@ module Persistence
                              foreign_key: :arrival_airport
         end
       end
-
-      def by_city(city)
-        where(city: city)
-      end
-
-      def by_code(code)
-        where(airport_code: code)
-      end
-
-      def by_name(name)
-        where(airport_name: name)
-      end
     end
   end
 end
