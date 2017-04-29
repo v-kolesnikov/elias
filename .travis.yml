@@ -11,7 +11,7 @@ services:
 cache: bundler
 
 rvm:
-  - 2.4.0
+  - 2.4.1
 
 before_script:
   - psql -c 'create database elias_test;' -U postgres
