@@ -13,6 +13,9 @@ cache: bundler
 rvm:
   - 2.4.1
 
+before_install:
+  - bundle config github.https true
+
 before_script:
   - psql -c 'create database elias_test;' -U postgres
 

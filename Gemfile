@@ -14,7 +14,7 @@ gem "shotgun", ">= 0.9.2"
 # Database persistence
 gem "pg"
 gem "rom-repository"
-gem "rom-sql"
+gem "rom-sql", github: "rom-rb/rom-sql"
 
 # Application dependencies
 gem "dry-matcher"
