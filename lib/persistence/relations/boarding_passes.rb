@@ -7,6 +7,8 @@ module Persistence
         attribute :boarding_no, Types::Strict::Int
         attribute :seat_no, Types::Strict::String
 
+        primary_key :ticket_no, :flight_id
+
         associations do
           belongs_to :flight
           belongs_to :ticket, foreign_key: :ticket_no

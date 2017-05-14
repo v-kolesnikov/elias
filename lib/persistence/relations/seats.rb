@@ -6,6 +6,8 @@ module Persistence
         attribute :seat_no, Types::Strict::String
         attribute :fare_conditions, Types::Strict::String
 
+        primary_key :aircraft_code, :seat_no
+
         associations do
           belongs_to :aircraft, foreign_key: :aircraft_code
         end
