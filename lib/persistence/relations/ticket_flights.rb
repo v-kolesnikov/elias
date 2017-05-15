@@ -5,7 +5,7 @@ module Persistence
         attribute :ticket_no, Types::Strict::String
         attribute :flight_id, Types::Strict::Int
         attribute :fare_conditions, Types::Strict::String
-        attribute :amount, Types::Coercible::Float
+        attribute :amount, Types::Strict::Float
 
         primary_key :ticket_no, :flight_id
 

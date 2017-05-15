@@ -4,7 +4,7 @@ module Persistence
       schema(:bookings) do
         attribute :book_ref,     Types::Strict::String
         attribute :book_date,    Types::Strict::Time
-        attribute :total_amount, Types::Coercible::Decimal
+        attribute :total_amount, Types::Strict::Float
 
         primary_key :book_ref
 
