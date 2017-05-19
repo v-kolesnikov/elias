@@ -17,6 +17,7 @@ require "sequel"
 namespace :db do
   task :setup do
     Elias::Container.boot! :rom
+    ROM::SQL::RakeSupport.env = Elias::Container["persistence.rom"]
   end
 
   # The following migration tasks are adapted from https://gist.github.com/kalmbach/4471560
@@ -63,8 +64,8 @@ namespace :db do
   end
 
   desc "Perform rollback to specified target"
-  task :rollback, :target do |t, args|
-    Sequel::Migrator.run(DB, "db/migrate", :target => args[:target].to_i)
+  task :rollback, [:target] => [:setup] do |t, args|
+    ROM::SQL::RakeSupport.run_migrations(target: args[:target].to_i)
     Rake::Task["db:version"].execute
   end
 
