@@ -22,7 +22,10 @@ namespace :db do
 
   # The following migration tasks are adapted from https://gist.github.com/kalmbach/4471560
   Sequel.extension :migration
-  DB = Sequel.connect(Elias::Container.settings.database_url)
+  DB = Sequel.connect(
+    Elias::Container.settings.database_url,
+    search_path: Elias::Container.settings.database_schema
+  )
 
   desc "Prints current schema version"
   task :version do

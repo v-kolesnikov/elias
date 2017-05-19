@@ -12,6 +12,9 @@ AllCops:
     - "log/**/*"
     - "vendor/**/*"
 
+Metrics/BlockLength:
+  Max: 30
+
 Style/Documentation:
   Enabled: false
 

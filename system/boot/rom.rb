@@ -12,7 +12,11 @@ Elias::Container.namespace "persistence" do |persistence|
       rom_config = ROM::Configuration.new(
         :sql,
         persistence.settings.database_url,
-        extensions: [:error_sql]
+        extensions: [:error_sql],
+        after_connect: ->(conn) do
+          schema = persistence.settings.database_schema
+          conn.execute("set search_path to #{schema}")
+        end
       )
 
       rom_config.plugin(:sql, relations: :instrumentation) do |p|

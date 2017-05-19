@@ -12,6 +12,7 @@ module Elias
     end
 
     setting :database_url, Types::Required::String
+    setting :database_schema, Types::Required::String.default("public")
     setting :session_secret, Types::Required::String
   end
 end
