@@ -33,3 +33,10 @@ Style/LambdaCall:
 Style/WordArray:
   Enabled: false
 
+Style/ColonMethodCall:
+  Exclude:
+    - "lib/persistence/relations/**/*"
+
+Style/MethodCallWithoutArgsParentheses:
+  Exclude:
+    - "lib/persistence/relations/**/*"
