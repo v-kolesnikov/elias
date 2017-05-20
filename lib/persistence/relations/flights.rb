@@ -31,8 +31,39 @@ module Persistence
                                 foreign_key: :arrival_airport
           belongs_to :aircraft, foreign_key: :aircraft_code
 
+          has_many :boarding_passes
           has_many :ticket_flights
           has_many :tickets, through: :ticket_flights
+        end
+      end
+
+      view(:seats_left) do
+        schema do
+          new([relations[:flights][:flight_no].func { int::count('*') }])
+        end
+
+        relation do |flight_no, ago|
+          exclude =
+            boarding_passes
+            .order(nil)
+            .select { any }
+            .where(boarding_passes[:flight_id].qualified =>
+                   flights[:flight_id].qualified)
+            .where(boarding_passes[:seat_no].qualified =>
+                   seats[:seat_no].qualified)
+
+          flights
+            .order(nil)
+            .join(:seats, aircraft_code: :aircraft_code)
+            .where(flights[:flight_no].qualified => flight_no)
+            .where do
+              date::cast(flights[:scheduled_departure], :date).is(
+                date::cast(
+                  time::bookings_now() - any::cast("#{ago} days", :interval),
+                  :date
+                )
+              )
+            end.where { exists(exclude) } # TODO: Must be `NOT EXISTS` here
         end
       end
     end
