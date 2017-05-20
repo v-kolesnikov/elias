@@ -1,5 +1,5 @@
-require "dry-configurable"
-require "dry-transaction"
+require 'dry-configurable'
+require 'dry-transaction'
 
 module Elias
   class Transactions

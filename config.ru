@@ -1,2 +1,2 @@
-require_relative "system/boot"
+require_relative 'system/boot'
 run Elias::Application.freeze.app

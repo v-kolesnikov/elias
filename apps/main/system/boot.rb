@@ -1,8 +1,8 @@
-require_relative "main/container"
+require_relative 'main/container'
 
 Main::Container.finalize!
 
-require "main/application"
-require "main/transactions"
+require 'main/application'
+require 'main/transactions'
 
-Main::Container.require "transactions/**/*.rb"
+Main::Container.require 'transactions/**/*.rb'

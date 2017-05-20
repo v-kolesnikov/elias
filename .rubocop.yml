@@ -33,5 +33,3 @@ Style/LambdaCall:
 Style/WordArray:
   Enabled: false
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes

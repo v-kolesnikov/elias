@@ -1,3 +1,3 @@
-require "main/view_context"
+require 'main/view_context'
 
-Main::Container.register "view_context", Main::ViewContext.new
+Main::Container.register 'view_context', Main::ViewContext.new

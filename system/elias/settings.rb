@@ -1,5 +1,5 @@
-require "dry/web/settings"
-require "dry-types"
+require 'dry/web/settings'
+require 'dry-types'
 
 module Elias
   class Settings < Dry::Web::Settings
@@ -12,7 +12,7 @@ module Elias
     end
 
     setting :database_url, Types::Required::String
-    setting :database_schema, Types::Required::String.default("public")
+    setting :database_schema, Types::Required::String.default('public')
     setting :session_secret, Types::Required::String
   end
 end

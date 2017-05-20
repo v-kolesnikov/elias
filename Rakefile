@@ -1,23 +1,23 @@
 # rubocop:disable Metrics/BlockLength
-require "bundler/setup"
+require 'bundler/setup'
 
-require "byebug" unless ENV["RACK_ENV"] == "production"
+require 'byebug' unless ENV['RACK_ENV'] == 'production'
 
 begin
-  require "rspec/core/rake_task"
+  require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new :spec
   task default: [:spec]
 rescue LoadError
 end
 
-require_relative "system/elias/container"
+require_relative 'system/elias/container'
 
-require "rom/sql/rake_task"
-require "sequel"
+require 'rom/sql/rake_task'
+require 'sequel'
 namespace :db do
   task :setup do
     Elias::Container.boot! :rom
-    ROM::SQL::RakeSupport.env = Elias::Container["persistence.rom"]
+    ROM::SQL::RakeSupport.env = Elias::Container['persistence.rom']
   end
 
   # The following migration tasks are adapted from https://gist.github.com/kalmbach/4471560
@@ -27,57 +27,57 @@ namespace :db do
     search_path: Elias::Container.settings.database_schema
   )
 
-  desc "Prints current schema version"
+  desc 'Prints current schema version'
   task :version do
     version = if DB.tables.include?(:schema_migrations)
       DB[:schema_migrations].order(:filename).last[:filename]
-    end || "not available"
+    end || 'not available'
 
     puts "Current schema version: #{version}"
   end
 
   namespace :structure do
-    desc "Dump database structure to db/structure.sql"
+    desc 'Dump database structure to db/structure.sql'
     task :dump do
       dump = `pg_dump -s -x -O #{Elias::Container.settings.database_url}`
-      File.open "db/structure.sql", "w" do |file|
+      File.open 'db/structure.sql', 'w' do |file|
         file.write dump
       end
     end
   end
 
   task :check_migrations_exist do
-    unless Dir["db/migrate/*.rb"].any?
-      puts "No migrations found"
+    unless Dir['db/migrate/*.rb'].any?
+      puts 'No migrations found'
       exit 1
     end
   end
 
   # Enhance the migration task provided by ROM
-  desc "Perform migration up to latest migration available"
+  desc 'Perform migration up to latest migration available'
   task :migrate => [:check_migrations_exist] do
     # Once db:migrate finishes, dump the db structure:
-    Rake::Task["db:structure:dump"].execute
+    Rake::Task['db:structure:dump'].execute
 
     # And print the current migration version:
-    Rake::Task["db:version"].execute
+    Rake::Task['db:version'].execute
   end
 
-  desc "Perform rollback to specified target"
+  desc 'Perform rollback to specified target'
   task :rollback, [:target] => [:setup] do |t, args|
     ROM::SQL::RakeSupport.run_migrations(target: args[:target].to_i)
-    Rake::Task["db:version"].execute
+    Rake::Task['db:version'].execute
   end
 
-  desc "Load seed data into the database"
+  desc 'Load seed data into the database'
   task :seed do
-    seed_data = File.join("db", "seed.rb")
+    seed_data = File.join('db', 'seed.rb')
     load(seed_data) if File.exist?(seed_data)
   end
 
-  desc "Load a small, representative set of data (for development)."
+  desc 'Load a small, representative set of data (for development).'
   task :sample_data do
-    sample_data = File.join("db", "sample_data.rb")
+    sample_data = File.join('db', 'sample_data.rb')
     load(sample_data) if File.exist?(sample_data)
   end
 end

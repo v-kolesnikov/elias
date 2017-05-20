@@ -1,5 +1,5 @@
-require "dry/web/umbrella"
-require_relative "settings"
+require 'dry/web/umbrella'
+require_relative 'settings'
 
 module Elias
   class Container < Dry::Web::Umbrella
@@ -9,7 +9,7 @@ module Elias
       config.listeners = true
     end
 
-    load_paths! "lib", "system"
+    load_paths! 'lib', 'system'
 
     def self.settings
       config.settings

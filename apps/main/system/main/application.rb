@@ -1,17 +1,17 @@
-require "dry/web/roda/application"
-require_relative "container"
+require 'dry/web/roda/application'
+require_relative 'container'
 
 module Main
   class Application < Dry::Web::Roda::Application
     configure do |config|
       config.container = Container
-      config.routes = "web/routes".freeze
+      config.routes = 'web/routes'.freeze
     end
 
-    opts[:root] = Pathname(__FILE__).join("../..").realpath.dirname
+    opts[:root] = Pathname(__FILE__).join('../..').realpath.dirname
 
     use Rack::Session::Cookie,
-        key: "main.session",
+        key: 'main.session',
         secret: Elias::Container.settings.session_secret
 
     plugin :csrf, raise: true
@@ -22,7 +22,7 @@ module Main
       r.multi_route
 
       r.root do
-        r.view "welcome"
+        r.view 'welcome'
       end
     end
 

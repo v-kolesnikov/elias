@@ -1,4 +1,4 @@
-require "elias/repository"
+require 'elias/repository'
 
 module Main
   module Persistence

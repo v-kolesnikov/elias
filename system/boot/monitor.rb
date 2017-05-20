@@ -1,6 +1,6 @@
 Elias::Container.finalize :monitor do |_container|
   init do
-    require "dry/monitor"
+    require 'dry/monitor'
   end
 
   start do

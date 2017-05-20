@@ -1,7 +1,7 @@
-require "dry-transaction"
-require "elias/transactions"
-require "main/container"
-require "main/import"
+require 'dry-transaction'
+require 'elias/transactions'
+require 'main/container'
+require 'main/import'
 
 module Main
   class Transactions < Elias::Transactions

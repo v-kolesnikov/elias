@@ -1,14 +1,14 @@
-require_relative "db_helper"
+require_relative 'db_helper'
 
-require "rack/test"
-require "capybara/rspec"
-require "capybara-screenshot/rspec"
-require "capybara/poltergeist"
+require 'rack/test'
+require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+require 'capybara/poltergeist'
 
-Dir[SPEC_ROOT.join("support/app/*.rb").to_s].each(&method(:require))
-Dir[SPEC_ROOT.join("shared/app/*.rb").to_s].each(&method(:require))
+Dir[SPEC_ROOT.join('support/app/*.rb').to_s].each(&method(:require))
+Dir[SPEC_ROOT.join('shared/app/*.rb').to_s].each(&method(:require))
 
-require SPEC_ROOT.join("../system/boot").realpath
+require SPEC_ROOT.join('../system/boot').realpath
 
 Capybara.app = TestHelpers.app
 Capybara.server_port = 3001
@@ -21,7 +21,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(
     app,
     js_errors: false,
-    phantomjs_logger: File.open(SPEC_ROOT.join("../log/phantomjs.log"), "w"),
+    phantomjs_logger: File.open(SPEC_ROOT.join('../log/phantomjs.log'), 'w'),
     phantomjs_options: %w[--load-images=no]
   )
 end

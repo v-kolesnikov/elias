@@ -1,4 +1,4 @@
-require "elias/view_context"
+require 'elias/view_context'
 
 module Main
   class ViewContext < Elias::ViewContext

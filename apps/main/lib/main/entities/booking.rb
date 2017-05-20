@@ -1,4 +1,4 @@
-require "types"
+require 'types'
 
 module Main
   module Entities

@@ -1,22 +1,22 @@
 #!/usr/bin/env ruby
 
-APP_ROOT = File.expand_path("../../", __FILE__)
+APP_ROOT = File.expand_path('../../', __FILE__)
 
 Dir.chdir(APP_ROOT) do
   # Set up your app for development here
-  puts "== Installing dependencies =="
-  system "bundle"
+  puts '== Installing dependencies =='
+  system 'bundle'
 
-  puts "== Initializing settings =="
-  unless File.exist?("config/settings.yml")
-    FileUtils.cp "config/settings.example.yml", "config/settings.yml"
+  puts '== Initializing settings =='
+  unless File.exist?('config/settings.yml')
+    FileUtils.cp 'config/settings.example.yml', 'config/settings.yml'
   end
 
-  puts "== Creating database =="
-  system "createdb -h 0.0.0.0 -U postgres elias_development || true"
-  system "createdb -h 0.0.0.0 -U postgres elias_test || true"
+  puts '== Creating database =='
+  system 'createdb -h 0.0.0.0 -U postgres elias_development || true'
+  system 'createdb -h 0.0.0.0 -U postgres elias_test || true'
 
-  puts "== Migrating database =="
-  system "RACK_ENV=development bundle exec rake db:migrate"
-  system "RACK_ENV=test bundle exec rake db:migrate"
+  puts '== Migrating database =='
+  system 'RACK_ENV=development bundle exec rake db:migrate'
+  system 'RACK_ENV=test bundle exec rake db:migrate'
 end

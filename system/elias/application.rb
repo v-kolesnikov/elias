@@ -1,5 +1,5 @@
-require "dry/web/roda/application"
-require_relative "container"
+require 'dry/web/roda/application'
+require_relative 'container'
 
 module Elias
   class Application < Dry::Web::Roda::Application

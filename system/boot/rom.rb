@@ -1,8 +1,8 @@
-Elias::Container.namespace "persistence" do |persistence|
+Elias::Container.namespace 'persistence' do |persistence|
   persistence.finalize(:rom) do
     init do
-      require "sequel"
-      require "rom"
+      require 'sequel'
+      require 'rom'
 
       use :monitor
 
@@ -23,16 +23,16 @@ Elias::Container.namespace "persistence" do |persistence|
         p.notifications = notifications
       end
 
-      rom_config.gateways[:default].use_logger persistence["logger"]
+      rom_config.gateways[:default].use_logger persistence['logger']
 
-      persistence.register("config", rom_config)
+      persistence.register('config', rom_config)
     end
 
     start do
-      config = persistence["persistence.config"]
-      config.auto_registration(persistence.root.join("lib/persistence"))
+      config = persistence['persistence.config']
+      config.auto_registration(persistence.root.join('lib/persistence'))
 
-      persistence.register("rom", ROM.container(config))
+      persistence.register('rom', ROM.container(config))
     end
   end
 end

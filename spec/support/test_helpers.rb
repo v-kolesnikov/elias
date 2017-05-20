@@ -6,7 +6,7 @@ module TestHelpers
   end
 
   def rom
-    Elias::Container["persistence.rom"]
+    Elias::Container['persistence.rom']
   end
 
   def db_connection
