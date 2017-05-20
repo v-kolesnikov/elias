@@ -45,6 +45,16 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = bookings, pg_catalog;
 
 --
+-- Name: bookings_now(); Type: FUNCTION; Schema: bookings; Owner: -
+--
+
+CREATE FUNCTION bookings_now() RETURNS timestamp with time zone
+    LANGUAGE sql IMMUTABLE COST 0.00999999978
+    AS $$SELECT '2016-10-13 17:00:00'::TIMESTAMP
+        AT TIME ZONE 'Europe/Moscow';$$;
+
+
+--
 -- Name: now(); Type: FUNCTION; Schema: bookings; Owner: -
 --
 
