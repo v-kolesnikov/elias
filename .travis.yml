@@ -20,6 +20,4 @@ before_script:
   - cp config/settings.ci.yml config/settings.yml
   - psql -c 'create database elias_test;' -U postgres
   - psql elias_test -U postgres < db/structure.sql
-
-script:
   - bundle exec rubocop
