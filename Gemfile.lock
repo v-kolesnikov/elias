@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rom-rb/rom-sql.git
-  revision: 10d39254369e8ef98cc37fb1b7832539a0751254
+  revision: a2353dc8a84a0afdcfcb1c3c24324dc3d2ba563f
   specs:
     rom-sql (1.3.2)
       dry-core (~> 0.3)
