@@ -19,6 +19,22 @@ module Persistence
           has_many :flights, through: :ticket_flights
         end
       end
+
+      view(:most_disciplined_passengers) do
+        schema do
+          new([relations[:tickets][:passenger_name].qualified,
+               relations[:tickets][:ticket_no].qualified])
+        end
+
+        relation do
+          tickets
+            .join(:boarding_passes, ticket_no: :ticket_no)
+            .group { [passenger_name.qualified, ticket_no.qualified] }
+            .having { int::max(boarding_passes[:boarding_no]).is(1) }
+            .having { int::count('*') > 1 }
+            .order(nil)
+        end
+      end
     end
   end
 end
