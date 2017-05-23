@@ -35,6 +35,26 @@ module Persistence
           has_many :tickets, through: :ticket_flights
         end
       end
+
+      view(:top_greatest_delays) do
+        schema do
+          new(
+            [relations[:flights][:flight_no].qualified,
+             relations[:flights][:scheduled_departure].qualified,
+             relations[:flights][:actual_departure].qualified,
+             (relations[:flights][:actual_departure].qualified -
+              relations[:flights][:scheduled_departure].qualified).as(:delay)]
+          )
+        end
+
+        relation do |max|
+          flights
+            .where(flights[:actual_departure].qualified.not(nil))
+            .order((flights[:actual_departure].qualified -
+                    flights[:scheduled_departure].qualified).desc)
+            .limit(max)
+        end
+      end
     end
   end
 end
