@@ -1,18 +1,14 @@
-require 'dry/web/umbrella'
-require_relative 'settings'
+require 'dry/web/container'
 
 module Elias
-  class Container < Dry::Web::Umbrella
+  class Container < Dry::Web::Container
     configure do
-      config.name = :core
-      config.settings_loader = Elias::Settings
+      config.name = :elias
       config.listeners = true
+      config.default_namespace = 'elias'
+      config.auto_register = %w[lib/elias]
     end
 
-    load_paths! 'lib', 'system'
-
-    def self.settings
-      config.settings
-    end
+    load_paths! 'lib'
   end
 end

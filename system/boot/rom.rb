@@ -1,38 +1,43 @@
-Elias::Container.namespace 'persistence' do |persistence|
-  persistence.finalize(:rom) do
+# rubocop:disable Metrics/BlockLength
+Elias::Container.namespace 'persistence' do |container|
+  container.finalize :rom do
     init do
       require 'sequel'
       require 'rom'
+      require 'rom/sql'
 
+      use :settings
       use :monitor
+
+      ROM::SQL.load_extensions :postgres
 
       Sequel.database_timezone = :utc
       Sequel.application_timezone = :local
 
       rom_config = ROM::Configuration.new(
         :sql,
-        persistence.settings.database_url,
-        extensions: [:error_sql],
+        settings.database_url,
+        extensions: %i[error_sql pg_array pg_json],
         after_connect: ->(conn) do
-          schema = persistence.settings.database_schema
-          conn.execute("set search_path to #{schema}")
+          conn.execute("SET SEARCH_PATH TO #{settings.database_schema}")
         end
       )
 
-      rom_config.plugin(:sql, relations: :instrumentation) do |p|
-        p.notifications = notifications
+      rom_config.plugin :sql, relations: :instrumentation do |plugin_config|
+        plugin_config.notifications = notifications
       end
 
-      rom_config.gateways[:default].use_logger persistence['logger']
+      rom_config.plugin :sql, relations: :auto_restrictions
 
-      persistence.register('config', rom_config)
+      container.register 'config', rom_config
+      container.register 'db', rom_config.gateways[:default].connection
     end
 
     start do
-      config = persistence['persistence.config']
-      config.auto_registration(persistence.root.join('lib/persistence'))
+      config = container['persistence.config']
+      config.auto_registration container.root.join('lib/persistence')
 
-      persistence.register('rom', ROM.container(config))
+      container.register 'rom', ROM.container(config)
     end
   end
 end

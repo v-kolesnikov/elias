@@ -1,18 +1,10 @@
 require 'dry/web/settings'
-require 'dry-types'
+require 'types'
 
 module Elias
   class Settings < Dry::Web::Settings
-    module Types
-      include Dry::Types.module
-
-      module Required
-        String = Types::Strict::String.constrained(min_size: 1)
-      end
-    end
-
-    setting :database_url, Types::Required::String
-    setting :database_schema, Types::Required::String.default('public')
-    setting :session_secret, Types::Required::String
+    setting :database_url,    Types::Strict::String.constrained(filled: true)
+    setting :database_schema, Types::Strict::String.constrained(filled: true)
+    setting :session_secret,  Types::Strict::String.constrained(filled: true)
   end
 end

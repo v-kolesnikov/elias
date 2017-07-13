@@ -1,8 +1,8 @@
-require 'main/view_controller'
+require 'main/view/controller'
 
 module Main
   module Views
-    class Welcome < Main::ViewController
+    class Welcome < Main::View::Controller
       configure do |config|
         config.template = 'welcome'
       end

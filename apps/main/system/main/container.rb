@@ -4,20 +4,17 @@ require 'dry/web/container'
 module Main
   class Container < Dry::Web::Container
     require root.join('system/elias/container')
-    import Elias::Container
+    import core: Elias::Container
+
+    register :rack_monitor, Elias::Container[:rack_monitor]
 
     configure do |config|
       config.root = Pathname(__FILE__).join('../..').realpath.dirname.freeze
-
       config.logger = Elias::Container[:logger]
-
       config.default_namespace = 'main'
-
-      config.auto_register = %w[
-        lib/main
-      ]
+      config.auto_register = %w[lib/main]
     end
 
-    load_paths! 'lib', 'system'
+    load_paths! 'lib'
   end
 end

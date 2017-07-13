@@ -8,7 +8,12 @@ module Elias
     end
 
     route do |r|
-      r.run Main::Application.freeze.app
+      r.run ::Main::Application.freeze.app
+    end
+
+    error do |e|
+      self.class[:rack_monitor].instrument(:error, exception: e)
+      raise e
     end
   end
 end

@@ -1,3 +1,5 @@
+# auto_register: false
+
 require 'rom-repository'
 require 'elias/container'
 require 'elias/import'

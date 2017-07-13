@@ -12,7 +12,7 @@ module Main
 
     use Rack::Session::Cookie,
         key: 'main.session',
-        secret: Elias::Container.settings.session_secret
+        secret: self['core.settings'].session_secret
 
     plugin :csrf, raise: true
     plugin :flash
@@ -24,6 +24,11 @@ module Main
       r.root do
         r.view 'welcome'
       end
+    end
+
+    error do |e|
+      self.class[:rack_monitor].instrument(:error, exception: e)
+      raise e
     end
 
     load_routes!

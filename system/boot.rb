@@ -1,12 +1,17 @@
-require 'byebug' if ENV['RACK_ENV'] == 'development'
-require 'pry' if ENV['RACK_ENV'] == 'development'
+begin
+  require 'pry-byebug'
+rescue LoadError
+  nil # do nothing
+end
 
 require_relative 'elias/container'
 
-Elias::Container.finalize! do |container|
+Elias::Container.finalize!
+
+# Load sub-apps
+app_paths = Pathname(__FILE__).dirname.join('../apps').realpath.join('*')
+Dir[app_paths].each do |f|
+  require "#{f}/system/boot"
 end
 
-app_paths = Pathname(__FILE__).dirname.join('../apps').realpath.join('*')
-Dir[app_paths].each { |f| require "#{f}/system/boot" }
-
-require_relative 'elias/application'
+require 'elias/application'
