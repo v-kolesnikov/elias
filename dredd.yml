@@ -1,0 +1,36 @@
+reporter: apiary
+custom:
+  apiaryApiKey: 1841211cc11c9f839a175e69b2092fb8
+  apiaryApiName: eliasapiv1
+dry-run: null
+hookfiles: null
+language: ruby
+sandbox: false
+server: bundle exec shotgun -p 3000 -o 0.0.0.0 config.ru
+server-wait: 3
+init: false
+names: false
+only: []
+output: []
+header: []
+sorted: false
+user: null
+inline-errors: false
+details: false
+method: []
+color: true
+level: info
+timestamp: false
+silent: false
+path: []
+hooks-worker-timeout: 5000
+hooks-worker-connect-timeout: 1500
+hooks-worker-connect-retry: 500
+hooks-worker-after-connect-wait: 100
+hooks-worker-term-timeout: 5000
+hooks-worker-term-retry: 500
+hooks-worker-handler-host: 127.0.0.1
+hooks-worker-handler-port: 61321
+config: ./dredd.yml
+blueprint: api/v1/api.apib
+endpoint: 'http://0.0.0.0:3000/api'

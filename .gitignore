@@ -7,3 +7,5 @@
 
 # Logs
 /log/*.log
+
+/node_modules
