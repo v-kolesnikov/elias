@@ -4,8 +4,6 @@ module Main
   module Persistence
     module Repositories
       class Airports < Elias::Repository[:airports]
-        relations :airports, :flights
-
         def listing
           airports.map_to Main::Entities::Airport
         end
