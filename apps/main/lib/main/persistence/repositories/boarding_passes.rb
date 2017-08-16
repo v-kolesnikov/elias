@@ -7,7 +7,7 @@ module Main
         relations :boarding_passes
 
         def listing
-          boarding_passes.as Main::Entities::BoardingPass
+          boarding_passes.map_to Main::Entities::BoardingPass
         end
       end
     end

@@ -7,7 +7,7 @@ module Main
         relations :bookings, :tickets
 
         def listing
-          bookings.as Main::Entities::Booking
+          bookings.map_to Main::Entities::Booking
         end
       end
     end

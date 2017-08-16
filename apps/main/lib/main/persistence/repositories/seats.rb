@@ -7,7 +7,7 @@ module Main
         relations :seats, :aircrafts
 
         def listing
-          seats.as Main::Entities::Seat
+          seats.map_to Main::Entities::Seat
         end
       end
     end

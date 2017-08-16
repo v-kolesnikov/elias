@@ -7,7 +7,7 @@ module Main
         relations :airports, :flights
 
         def listing
-          airports.as Main::Entities::Airport
+          airports.map_to Main::Entities::Airport
         end
       end
     end
