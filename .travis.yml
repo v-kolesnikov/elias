@@ -17,7 +17,7 @@ before_install:
   - bundle config github.https true
 
 before_script:
-  - cp config/settings.ci.yml config/settings.yml
+  - cp .env.ci .env
   - psql -c 'create database elias_test;' -U postgres
   - psql elias_test -U postgres < db/structure.sql
   - bundle exec rubocop

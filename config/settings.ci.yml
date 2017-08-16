@@ -1,7 +1,0 @@
-development: &base
-  database_url: 'postgres://postgres@0.0.0.0/demo'
-  database_schema: 'bookings'
-  session_secret: '9b7d5a1911cbde5c5ef9b9a9a8b97fd2'
-test:
-  <<: *base
-  database_url: 'postgres://postgres@0.0.0.0/elias_test'
