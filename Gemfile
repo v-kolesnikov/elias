@@ -4,8 +4,8 @@ gem 'rake'
 
 # Web framework
 gem 'dry-system', '>= 0.7.1'
-gem 'dry-web', '>= 0.7.0'
-gem 'dry-web-roda', '>= 0.6.0'
+gem 'dry-web', '~> 0.7.1'
+gem 'dry-web-roda', '~> 0.7.5'
 gem 'puma'
 gem 'rack_csrf'
 
@@ -26,6 +26,9 @@ gem 'dry-types'
 gem 'dry-validation'
 gem 'dry-view', '>= 0.3.0'
 gem 'slim'
+
+# Dependencies
+gem 'rouge', '2.1.1'
 
 group :development, :test do
   gem 'pry-byebug', platform: :mri
