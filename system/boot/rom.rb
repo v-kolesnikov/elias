@@ -23,11 +23,11 @@ Elias::Container.namespace 'persistence' do |container|
         end
       )
 
+      rom_config.plugin :sql, relations: :auto_restrictions
+
       rom_config.plugin :sql, relations: :instrumentation do |plugin_config|
         plugin_config.notifications = notifications
       end
-
-      rom_config.plugin :sql, relations: :auto_restrictions
 
       container.register 'config', rom_config
       container.register 'db', rom_config.gateways[:default].connection
