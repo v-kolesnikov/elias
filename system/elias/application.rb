@@ -8,6 +8,10 @@ module Elias
     end
 
     route do |r|
+      r.on 'api' do
+        r.run ::Api::Application.freeze.app
+      end
+
       r.run ::Main::Application.freeze.app
     end
 
