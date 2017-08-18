@@ -19,7 +19,7 @@ end
 
 namespace :db do
   task :setup do
-    Elias::Container.boot :rom
+    Elias::Container.init :rom
   end
 
   desc 'Prints current schema version'
