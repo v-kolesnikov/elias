@@ -13,6 +13,9 @@ module Persistence
           has_many :seats, foreign_key: :aircraft_code
         end
       end
+
+      use :pagination
+      per_page 100
     end
   end
 end

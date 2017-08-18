@@ -35,6 +35,9 @@ module Persistence
           has_many :tickets, through: :ticket_flights
         end
       end
+
+      use :pagination
+      per_page 100
     end
   end
 end

@@ -41,6 +41,9 @@ module Persistence
             end
         end
       end
+
+      use :pagination
+      per_page 100
     end
   end
 end
