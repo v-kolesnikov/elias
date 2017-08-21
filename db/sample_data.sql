@@ -1,3 +1,5 @@
+SET search_path = bookings, pg_catalog;
+
 --
 -- Data for Name: aircrafts; Type: TABLE DATA; Schema: bookings; Owner: -
 --
