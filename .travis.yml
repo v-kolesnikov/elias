@@ -15,11 +15,25 @@ rvm:
 
 before_install:
   - bundle config github.https true
-  - npm install -g dredd@4.3.0
 
-before_script:
-  - cp .env.ci .env
-  - psql -c 'create database elias_test;' -U postgres
-  - psql elias_test -U postgres < db/structure.sql
-  - bundle exec rubocop
-  - dredd
+jobs:
+  include:
+    - stage: linter
+      script: bundle exec rubocop
+
+    - stage: unit tests
+      before_script:
+        - cp .env.ci .env
+        - psql -c 'create database elias_test;' -U postgres
+        - psql elias_test -U postgres -f db/structure.sql
+
+    - stage: api tests
+      before_install:
+        - npm install -g dredd@4.3.0
+      before_script:
+        - cp .env.ci .env
+        - psql -c 'create database elias_test;' -U postgres
+        - psql elias_test -U postgres -f db/structure.sql
+        - psql elias_test -U postgres -f db/sample_data.sql
+      script: dredd
+
