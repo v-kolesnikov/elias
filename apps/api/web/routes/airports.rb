@@ -9,7 +9,7 @@ module Api
         end
       end
 
-      r.on(':airport_code') do |airport_code|
+      r.on(:airport_code) do |airport_code|
         r.get do
           repo.by_code(airport_code).to_h
         end
