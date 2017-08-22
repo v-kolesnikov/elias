@@ -8,7 +8,9 @@ addons:
 services:
   - postgresql
 
-cache: bundler
+cache:
+  bundler: true
+  yarn: true
 
 rvm:
   - 2.4.1
@@ -29,11 +31,10 @@ jobs:
 
     - stage: api tests
       before_install:
-        - npm install -g dredd@4.3.0
+        - yarn install
       before_script:
         - cp .env.ci .env
         - psql -c 'create database elias_test;' -U postgres
         - psql elias_test -U postgres -f db/structure.sql
         - psql elias_test -U postgres -f db/sample_data.sql
-      script: dredd
-
+      script: ./node_modules/.bin/dredd

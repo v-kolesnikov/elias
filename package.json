@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "dredd": "^4.4.0"
+  }
+}
