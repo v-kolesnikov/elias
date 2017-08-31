@@ -5,7 +5,7 @@ module Api
     module Repositories
       class Aircrafts < Elias::Repository[:aircrafts]
         def listing
-          aircrafts.map_to Api::Entities::Aircraft
+          aircrafts.map_to(Api::Entities::Aircraft).to_a
         end
 
         def by_code(aircraft_code)

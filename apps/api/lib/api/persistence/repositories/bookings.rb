@@ -5,7 +5,7 @@ module Api
     module Repositories
       class Bookings < Elias::Repository[:bookings]
         def listing
-          bookings.map_to Api::Entities::Booking
+          bookings.map_to(Api::Entities::Booking).to_a
         end
       end
     end

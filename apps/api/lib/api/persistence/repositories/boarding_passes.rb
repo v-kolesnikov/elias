@@ -5,7 +5,7 @@ module Api
     module Repositories
       class BoardingPasses < Elias::Repository[:boarding_passes]
         def listing
-          boarding_passes.map_to Api::Entities::BoardingPass
+          boarding_passes.map_to(Api::Entities::BoardingPass).to_a
         end
       end
     end
