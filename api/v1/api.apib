@@ -2,7 +2,7 @@ FORMAT: 1A
 
 # Elias API
 
-# Group Flights
+# Group Airports
 
 ## Airports [/airports]
 
@@ -15,13 +15,20 @@ FORMAT: 1A
 + Response 200 (application/json)
     + Attributes (Airport)
 
-### List airports [GET]
+### List airports [GET /airports{?city,timezone}]
+
++ Parameters
+    + city: `Мирный` (string, optional) - Airport city name
+    + timezone: `Asia/Yakutsk` (string, optional) - Airport timezone
 
 + Response 200 (application/json)
     + Attributes (Collection)
         + data (array[Airport])
 
-## aircrafts [/aircrafts]
+
+# Group Aircrafts
+
+## Aircrafts [/aircrafts]
 
 ### Retrieve aircraft [GET /aircrafts/{aircraft_code}]
 
