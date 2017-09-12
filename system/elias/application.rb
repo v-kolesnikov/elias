@@ -4,7 +4,7 @@ require_relative 'container'
 module Elias
   class Application < Dry::Web::Roda::Application
     configure do |config|
-      config.container = Container
+      config.container = Elias::Container
     end
 
     route do |r|
