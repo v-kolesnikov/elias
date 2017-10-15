@@ -14,8 +14,8 @@ gem 'shotgun', '>= 0.9.2'
 
 # Database persistence
 gem 'pg'
-gem 'rom', '4.0.0beta3'
-gem 'rom-sql', '2.0.0beta3'
+gem 'rom', '4.0.0.rc2'
+gem 'rom-sql', '2.0.0.rc1'
 
 # Application dependencies
 gem 'dry-matcher'
