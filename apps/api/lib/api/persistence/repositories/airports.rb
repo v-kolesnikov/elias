@@ -8,8 +8,8 @@ module Api
           airports.map_to(Api::Entities::Airport).to_a
         end
 
-        def by_code(airport_code)
-          airports.by_pk(airport_code).one!
+        def retrieve(airport_code)
+          airports.by_pk(airport_code).map_to(Api::Entities::Airport).one!
         end
       end
     end

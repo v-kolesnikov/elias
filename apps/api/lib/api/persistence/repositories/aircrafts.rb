@@ -8,8 +8,8 @@ module Api
           aircrafts.map_to(Api::Entities::Aircraft).to_a
         end
 
-        def by_code(aircraft_code)
-          aircrafts.by_pk(aircraft_code).one!
+        def retrieve(aircraft_code)
+          aircrafts.by_pk(aircraft_code).map_to(Api::Entities::Aircraft).one!
         end
       end
     end

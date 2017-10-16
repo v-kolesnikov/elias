@@ -4,7 +4,7 @@ require_relative 'container'
 module Api
   class Application < Dry::Web::Roda::Application
     configure do |config|
-      config.container = Container
+      config.container = Api::Container
       config.routes = 'web/routes'.freeze
     end
 
