@@ -8,5 +8,13 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
+  api_doc:
+    image: 'bukalapak/snowboard'
+    command: html -o index.html -b 0.0.0.0:8088 -s /api/v1/api.apib
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./api:/api
+
 volumes:
   postgres:

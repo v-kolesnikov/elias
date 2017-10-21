@@ -14,6 +14,9 @@ module Persistence
           belongs_to :ticket, foreign_key: :ticket_no
         end
       end
+
+      use :pagination
+      per_page 100
     end
   end
 end

@@ -17,7 +17,23 @@ def db
   Elias::Container['persistence.db']
 end
 
+def settings
+  Elias::Container[:settings]
+end
+
+task :environment do
+  Elias::Container.finalize!
+end
+
+task :console do
+  load './bin/console'
+end
+
 namespace :db do
+  task console: :environment do
+    system("psql #{Shellwords.escape(settings[:database_url])}")
+  end
+
   task :setup do
     Elias::Container.init :rom
   end

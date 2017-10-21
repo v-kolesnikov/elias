@@ -18,6 +18,9 @@ module Persistence
                              foreign_key: :arrival_airport
         end
       end
+
+      use :pagination
+      per_page 100
     end
   end
 end

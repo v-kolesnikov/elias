@@ -1,0 +1,122 @@
+FORMAT: 1A
+
+# Elias API
+
+# Group Airports
+
+## Airports [/airports]
+
+### Retrieve airport [GET /airports/{airport_code}]
+
++ Parameters
+    + airport_code (string, `MJZ`)
+        Airport code identifier
+
++ Response 200 (application/json)
+    + Attributes (Airport)
+
+### List airports [GET /airports{?city,timezone}]
+
++ Parameters
+    + city: `Мирный` (string, optional) - Airport city name
+    + timezone: `Asia/Yakutsk` (string, optional) - Airport timezone
+
++ Response 200 (application/json)
+    + Attributes (Collection)
+        + data (array[Airport])
+
+
+# Group Aircrafts
+
+## Aircrafts [/aircrafts]
+
+### Retrieve aircraft [GET /aircrafts/{aircraft_code}]
+
++ Parameters
+    + aircraft_code (string, `SU9`)
+        Aircraft code identifier
+
++ Response 200 (application/json)
+    + Attributes (Aircraft)
+
+### List aircrafts [GET]
+
++ Response 200 (application/json)
+    + Attributes (Collection)
+        + data (array[Aircraft])
+
+
+# Data structures
+
+## Resource (object)
++ object: object
++ url: /
++ livemode: false, true (enum[boolean])
+
+## Collection (object)
++ object: list
++ has_more: false, true (enum[boolean])
++ url: /
+
+
+## Aircraft (Resource)
++ object: aircraft
++ aircraft_code: CR2
++ model: Bombardier CRJ-200
++ range: 2700 (number)
+
+## Airport (Resource)
++ object: airport
++ airport_code: MJZ
++ airport_name: Мирный
++ city: Мирный
++ longitude: 114.038928 (number)
++ latitude: 62.534689 (number)
++ timezone: Asia/Yakutsk
+
+## BoardingPass (Resource)
++ object: boarding_pass
++ ticket_no: 0005435212351
++ flight_id: 30625
++ boarding_no: 1
++ seat_no: 2D
+
+## Booking (Resource)
++ object: booking
++ book_ref: 0002F3 - Booking number
++ book_date: 2016-09-07 01:31:00+00 - Booking date
++ total_amount: 69600.00 - Total amount of all tickets included in booking
+
+## Flight (Resource)
++ object: flight
++ flight_id: 1
++ flight_no: PG0405
++ scheduled_departure: 2016-09-13 05:35:00+00
++ scheduled_arrival: 2016-09-13 06:30:00+00
++ departure_airport: DME
++ arrival_airport: LED
++ status: Arrived
++ aircraft_code: 321
++ actual_departure: 2016-09-13 05:44:00+00
++ actual_arrival: 2016-09-13 06:39:00+00
+
+## Ticket (Resource)
++ object: ticket
++ ticket_no: 0005432000987 - Ticket number
++ book_ref: 06B046 - Booking number
++ passenger_id: 8149 604011 - Passenger personal document number
++ passenger_name: VALERIY TIKHONOV - Passenger name
++ contact_data: {"phone": "+70127117011"} - Passenger contact data
+
+## TicketFlight (Resource)
++ object: ticket_flight
++ ticket_no: 0005432159776
++ flight_id: 30625
++ fare_conditions: Business
++ amount: 42100.00 (number)
+
+## Seat (Resource)
++ object: seat
++ aircraft_code: SU9
++ seat_no: 1A
++ fare_conditions: Business

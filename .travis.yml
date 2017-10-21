@@ -8,7 +8,9 @@ addons:
 services:
   - postgresql
 
-cache: bundler
+cache:
+  bundler: true
+  yarn: true
 
 rvm:
   - 2.4.1
@@ -16,8 +18,23 @@ rvm:
 before_install:
   - bundle config github.https true
 
-before_script:
-  - cp .env.ci .env
-  - psql -c 'create database elias_test;' -U postgres
-  - psql elias_test -U postgres < db/structure.sql
-  - bundle exec rubocop
+jobs:
+  include:
+    - stage: linter
+      script: bundle exec rubocop
+
+    - stage: unit tests
+      before_script:
+        - cp .env.ci .env
+        - psql -c 'create database elias_test;' -U postgres
+        - psql elias_test -U postgres -f db/structure.sql
+
+    - stage: api tests
+      before_install:
+        - yarn install
+      before_script:
+        - cp .env.ci .env
+        - psql -c 'create database elias_test;' -U postgres
+        - psql elias_test -U postgres -f db/structure.sql
+        - psql elias_test -U postgres -f db/sample_data.sql
+      script: ./node_modules/.bin/dredd

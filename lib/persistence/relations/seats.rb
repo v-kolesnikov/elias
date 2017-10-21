@@ -12,6 +12,9 @@ module Persistence
           belongs_to :aircraft, foreign_key: :aircraft_code
         end
       end
+
+      use :pagination
+      per_page 100
     end
   end
 end

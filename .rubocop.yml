@@ -11,6 +11,7 @@ AllCops:
     - "tmp/**/*"
     - "log/**/*"
     - "vendor/**/*"
+    - "node_modules/**/*"
 
 Metrics/BlockLength:
   Max: 30
